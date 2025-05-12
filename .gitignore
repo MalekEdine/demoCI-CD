@@ -1,0 +1,25 @@
+# Java
+/target/
+/*.iml
+
+# Eclipse
+.classpath
+.project
+.setting
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+*.env
+application.properties
+application.yml
+
+# Docker secrets
+docker-compose.override.yml
