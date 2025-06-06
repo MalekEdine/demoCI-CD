@@ -8,6 +8,7 @@ class TaskManagerApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Ce test vient vérifier que le contexte de Spring démarre correctement
 	}
 
 }
