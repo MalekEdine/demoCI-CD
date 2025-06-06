@@ -9,6 +9,21 @@ on:
       - main
 
 jobs:
+  Analysis:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: sonarsource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   build:
     runs-on: ubuntu-latest
 
@@ -25,8 +40,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build app with Maven
-        run: mvn clean package -DskipTests
+      - name: Build and test app with Maven
+        run: mvn clean verify -DskipTests
 
       - name: Setup environment variables
         run: |
